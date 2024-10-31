@@ -1,5 +1,5 @@
 
 void GameLogic();
 
-void PutNewRandNum();
+void PutNewRandNum(bool anim = false);
 

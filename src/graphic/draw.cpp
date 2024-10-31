@@ -2,7 +2,7 @@
 #include "conscore.hpp"
 #include "graphic.hpp"
 #include "screen.hpp"
-#include "cell.hpp"
+#include "animcell.hpp"
 
 void DrawFrame() {
 	int rightBorder = console.width-1;
@@ -27,7 +27,9 @@ void DrawFrame() {
 void ShowGraphic() {
 	screen.Clear();
 	for(int i = 0; i < FIELD_WIDTH*FIELD_HEIGHT; i++)
-		cell[0][i].PutToScreen(screen.scr);
+		cell[0][i].PutStatToScreen(screen.scr);
+	for(int i = 0; i < FIELD_WIDTH*FIELD_HEIGHT; i++)
+		cell[0][i].PutAnimToScreen(screen.scr);
 	screen.Show();
 
 	DrawFrame();

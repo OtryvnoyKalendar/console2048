@@ -13,5 +13,3 @@ public:
 	void PutToScreen(ScreenMap& scr);
 };
 
-extern Cell cell[FIELD_HEIGHT][FIELD_WIDTH];
-

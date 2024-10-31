@@ -3,7 +3,7 @@
 <img src="https://github.com/OtryvnoyKalendar/console2048/blob/main/screenshots/screenshot%201.png" height="350" >
 
 ### Общее описание
-Console2048 - это игра 2048 для консоли Linux. Это только прототип игры, которую я написал для практики языка C++.
+Console2048 - это игра 2048 для консоли Linux. Это только прототип игры, которую я написал для практики языка C++. В основу сюжета легла одноимённая книга-антиутопия.
 Игра сделана на основе видео с ютуб канала Begin End и адаптирована под Linux. Вот *ссылки на видео*:  
 [Язык С++ - Урок 26 - Пишем игру 2048.](https://www.youtube.com/watch?v=kxjj89Sf45M&pp=ygU30K_Qt9GL0Log0KErKyAtINCj0YDQvtC6IDI2IC0g0J_QuNGI0LXQvCDQuNCz0YDRgyAyMDQ4Lg%3D%3D)  
 [Язык С++ - Урок 27 - Анимация для игры 2048](https://www.youtube.com/watch?v=P0H9VsKQz5o&pp=ygU30K_Qt9GL0Log0KErKyAtINCj0YDQvtC6IDI2IC0g0J_QuNGI0LXQvCDQuNCz0YDRgyAyMDQ4Lg%3D%3D)  

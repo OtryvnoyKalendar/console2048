@@ -8,7 +8,9 @@
 #include "graphic.hpp"
 #include "sigcore.hpp"
 #include "draw.hpp"
-#include "cell.hpp"
+#include "animcell.hpp"
+
+#define GAME_SPEED_DELAY 15 
 
 #define KEY_ESCAPE ((char)27)
 
@@ -20,7 +22,7 @@ int GetFreeCellCnt() {
 	return cnt;
 }
 
-void PutNewRandNum() {
+void PutNewRandNum(bool anim = false) {
 	srand(time(NULL));
 	if(GetFreeCellCnt() == 0)
 		return;
@@ -28,23 +30,30 @@ void PutNewRandNum() {
 	while(cnt > 0) {
 		int x = rand() % FIELD_WIDTH;
 		int y = rand() % FIELD_HEIGHT;
-		if(cell[y][x].value == 0)
+		if(cell[y][x].value == 0) {
+			if(anim)
+				cell[y][x].Animation(cell[y][x].pos);
 			cell[y][x].value = (rand() % 10 == 0) ? 4 : 2, cnt--;
+		}
 	}
 }
 
-bool MoveValInArray(Cell* valArr[], int arraySize) {
+bool MoveValInArray(AnimatedCell* valArr[], int arraySize) {
 	bool moved = false;
 	int lastX = 0;
 
 	for(int i = 1; i < arraySize; i++) {
 		if(valArr[i]->value != 0) {
 			if(valArr[lastX]->value == 0) {
+				valArr[i]->Animation(valArr[lastX]->pos);
+				valArr[lastX]->Animation(valArr[lastX]->pos);
 				moved = true;
 				valArr[lastX]->value = valArr[i]->value;
 				valArr[i]->value = 0;
 			}
 			else if(valArr[lastX]->value == valArr[i]->value) {
+				valArr[i]->Animation(valArr[lastX]->pos);
+				valArr[lastX]->Animation(valArr[lastX]->pos);
 				moved = true;
 				valArr[lastX]->value *= 2;
 				valArr[i]->value = 0;
@@ -53,6 +62,8 @@ bool MoveValInArray(Cell* valArr[], int arraySize) {
 			else if(valArr[lastX]->value != valArr[i]->value) {
 				lastX++;
 				if(lastX != i) {
+					valArr[i]->Animation(valArr[lastX]->pos);
+					valArr[lastX]->Animation(valArr[lastX]->pos);
 					moved = true;
 					valArr[lastX]->value = valArr[i]->value;
 					valArr[i]->value = 0;
@@ -81,7 +92,7 @@ void Move(int dy, int dx) {
 	bool moved = false;
 	if(dx != 0)
 		for(int j = 0; j < FIELD_HEIGHT; j++) {
-			Cell *valArr[FIELD_WIDTH];
+			AnimatedCell *valArr[FIELD_WIDTH];
 			for(int i = 0; i < FIELD_WIDTH; i++) {
 				int x = (dx < 0) ? i : FIELD_WIDTH - 1 - i;
 				valArr[i] = &cell[j][x];
@@ -91,7 +102,7 @@ void Move(int dy, int dx) {
 		}
 	if(dy != 0)
 		for(int i = 0; i < FIELD_WIDTH; i++) {
-			Cell* valArr[FIELD_HEIGHT];
+			AnimatedCell* valArr[FIELD_HEIGHT];
 			for(int j = 0; j < FIELD_HEIGHT; j++) {
 				int y = (dy < 0) ? j : FIELD_HEIGHT - 1 - j;
 				valArr[j] = &cell[y][i];
@@ -103,7 +114,7 @@ void Move(int dy, int dx) {
 	if(CheckLoss())
 		InitGame();
 	else if(moved)
-		PutNewRandNum();
+		PutNewRandNum(true);
 }
 
 void GetInput() {
@@ -133,6 +144,8 @@ void GetInput() {
 }
 
 void GameLogic() {
+	GetInput();
+	napms(GAME_SPEED_DELAY);
 	GetInput();
 	ShowGraphic();
 	refresh();

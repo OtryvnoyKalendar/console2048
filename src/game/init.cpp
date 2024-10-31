@@ -2,12 +2,12 @@
 #include "curscore.hpp"
 #include "sigcore.hpp"
 #include "screen.hpp"
-#include "cell.hpp"
+#include "animcell.hpp"
 #include "logic.hpp"
 
 Console console = {"Tetrix"};
 Screen screen;
-Cell cell[FIELD_HEIGHT][FIELD_WIDTH];
+AnimatedCell cell[FIELD_HEIGHT][FIELD_WIDTH];
 
 //const int shapeArrayNumber = 5;
 char* shapeArray[SHAPE_ARRAY_NUMBER] = {
