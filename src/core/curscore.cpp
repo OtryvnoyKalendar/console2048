@@ -26,26 +26,27 @@ void IncludeColors() {
 // режим ncurses
 
 void OpenNcursesMode() {
-  setlocale(LC_ALL, "");
+	setlocale(LC_ALL, "");
 
-  initscr();
-  savetty();
-  nonl();
-  cbreak();
-  noecho();
-  timeout(0);
-  leaveok(stdscr, true);
-  curs_set(0);
+	initscr();
+	savetty();
+	nonl();
+	cbreak();
+	noecho();
+	timeout(0);
+	leaveok(stdscr, true);
+	curs_set(0);
+	keypad(stdscr, true); // arrows support
 
-  IncludeColors();
+	IncludeColors();
 	//setSignals();
 }
 
 void CloseNcursesMode() {
-  clear();
-  refresh();
-  resetty();
-  curs_set(1);
-  endwin();
+	clear();
+	refresh();
+	resetty();
+	curs_set(1);
+	endwin();
 }
 

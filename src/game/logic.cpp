@@ -109,16 +109,24 @@ void Move(int dy, int dx) {
 void GetInput() {
 	CheckSignals();
 
-	char input = getch();
+	int input = getch();
 	switch(input) {
 		case KEY_ESCAPE:
 			CloseProgram();
+		case KEY_UP:
+		case 'W':
 		case 'w':
 			Move(-1, 0); break;
+		case KEY_DOWN:
+		case 'S':
 		case 's':
 			Move(1, 0); break;
+		case KEY_LEFT:
+		case 'A':
 		case 'a':
 			Move(0, -1); break;
+		case KEY_RIGHT:
+		case 'D':
 		case 'd':
 			Move(0, 1); break;
 	};

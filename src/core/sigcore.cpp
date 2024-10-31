@@ -16,7 +16,7 @@ void SetSignals() {
 }
 
 void CheckSignals() {
-	if (signal_status && signal_status != SIGWINCH)
+	if(signal_status && signal_status != SIGWINCH)
 		CloseProgram();
 }
 
