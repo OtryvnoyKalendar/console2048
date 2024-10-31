@@ -1,6 +1,6 @@
 # Console2048
 
-<img src="https://github.com/OtryvnoyKalendar/console2048/blob/main/screenshots/screenshot%201.png" height="350" width="300" >
+<img src="https://github.com/OtryvnoyKalendar/console2048/blob/main/screenshots/screenshot%201.png" height="350" >
 
 ### Общее описание
 Console2048 - это игра 2048 для консоли Linux. Это только прототип игры, которую я написал для практики языка C++.
