@@ -1,0 +1,4 @@
+
+void SetSignals();
+void CheckSignals();
+
