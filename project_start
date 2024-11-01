@@ -80,6 +80,10 @@ handle_argument() {
 			cmake)
 				run_mode="cmake"
 				;;
+			cmakedebug)
+				run_mode="cmake"
+				debug_mode="on"
+				;;
 			*)
 				print_message $RED "Некорректный аргумент компиляции: $1"
 				;;
@@ -204,8 +208,14 @@ then
 		print_message $BLUE "Запуск cmake"
 		print_dashes
 		cd build
-		cmake ..
-		make
+
+		if [ "$debug_mode" = "on" ]; then
+			cmake -DCMAKE_BUILD_TYPE=Debug ..
+		else
+			cmake ..
+		fi
+		cmake --build . # make
+
 		if [ "$?" = "0" ]
 		then
 			cd ../cmakebin
